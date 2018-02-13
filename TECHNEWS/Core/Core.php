@@ -1,7 +1,10 @@
 <?php
 
+namespace Core;#
 
-class Core
+use Core\Controller\AppController;
+
+class Core extends AppController
 {
     public function __construct($params)
     {
@@ -14,10 +17,32 @@ class Core
         endif;
 
         # Récupération des paramètres
-        $controller = $params['controller'];
-        $action = $params['action'];
+        $controller = 'Application\Controller\\'.ucfirst($params['controller']).'Controller';
+        $action = $params['action'].'Action';
 
-        if($controller == 'news' && $action =='index') {
+        # On vérifie si le fichier du controller
+        # existe avant de l'instancier
+
+        if (file_exists(PATH_ROOT . '\\' . $controller . '.php')) :
+
+            $obj = new $controller;
+
+            if(method_exists($obj, $action)) :
+                $obj->$action();
+            else :
+                # Aucune action ne correspond
+                echo '<h1>Cette action n\'existe pas</h1>';
+            endif;
+
+        else :
+
+            $this->render('errors/404', [
+                'message' => 'Cette action n\'existe pas'
+            ]);
+
+        endif;
+
+        /*if($controller == 'news' && $action =='index') {
             echo '<h1>JE SUIS LA PAGE D\'ACCUEIL</h1>';
         }
 
@@ -31,6 +56,6 @@ class Core
 
         if($controller == 'membre' && $action =='inscription') {
             echo '<h1>JE SUIS LA PAGE INSCRIPTION</h1>';
-        }
+        }*/
     }
 }
