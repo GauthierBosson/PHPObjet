@@ -1,3 +1,31 @@
+<?php
+    use Application\Model\Categorie\CategorieDb;
+    use Application\Model\Tags\TagsDb;
+    use Application\Model\Article\ArticleDb;
+
+    # Récupération des catégories du site
+    $categorieDb = new CategorieDb;
+    $categories = $categorieDb->fetchAll();
+
+    $tagsDb = new TagsDb();
+    $tags = $tagsDb->fetchAll();
+
+    $articleDb = new ArticleDb();
+    $sidebar = $articleDb->fetchAll(
+            null,
+            'DATECREATIONARTICLE DESC',
+            5
+    );
+
+    # Récupération des articles en position spécial
+    $articleDb = $articleDb->fetchAll('SPECIALARTICLE = 1');
+
+    #$this->debug($sidebar);
+
+    # Pour tester
+    #$this->debug($categories);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

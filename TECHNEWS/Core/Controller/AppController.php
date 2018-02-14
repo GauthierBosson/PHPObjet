@@ -41,4 +41,20 @@ class AppController
         $objet->setFlags(\ArrayObject::ARRAY_AS_PROPS);
         return $objet;
     }
+
+    /**
+     * Permet de débuguer les paramètres de la vue
+     * ou le paramètre passé
+     * @param array $params
+     */
+    public function debug(Array $params = []) {
+
+        if(empty($params)) :
+            $params = $this->_viewparams;
+        endif;
+
+        echo '<pre>';
+            print_r($params);
+        echo '</pre>';
+    }
 }
