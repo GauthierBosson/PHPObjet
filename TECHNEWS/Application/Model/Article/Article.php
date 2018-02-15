@@ -128,4 +128,25 @@ class Article
         return PATH_PUBLIC . '/images/product/' . $this->FEATUREDIMAGEARTICLE;
     }
 
+    /**
+     * Retourne une Accroche de 170 Caractères...
+     */
+    public function getACCROCHEARTICLE() {
+
+        // : http://php.net/manual/fr/function.mb-strimwidth.php
+
+        // strip tags to avoid breaking any html
+        $string = strip_tags($this->getCONTENUARTICLE());
+
+        if (strlen($string) > 170) {
+
+            // Je coupe ma chaine à 170 caractères
+            $stringCut = substr($string, 0, 170);
+
+            // Je m'assure de ne pas couper de mot !
+            $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
+        }
+        return $string;
+    }
+
 }

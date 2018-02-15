@@ -13,8 +13,19 @@ class NewsController extends AppController
 # Une classe ne peut hériter que d'une seule autre classe
 {
     public function indexAction() {
+
+        # Connexion à la base de données
+        $articleDB = new ArticleDb;
+
+        # Récupération des articles
+        $articles = $articleDB->fetchAll();
+
+        # Récupération des articles en spotlight
+        $spotlight = $articleDB->fetchAll('SPOTLIGHTARTICLE = 1');
+
         $this->render('news/index', [
-            'titre' => 'Webforce 3 Index'
+            'articles' => $articles,
+            'spotlight' => $spotlight
 
         ]);
         # include_once PATH_VIEWS . '/news/index.php';
@@ -52,5 +63,21 @@ class NewsController extends AppController
         $this->render('news/tags', [
             'tags' => $tags
         ]);
+    }
+
+    public function businessAction(){
+        $articleDb= new ArticleDb();
+        $article = $articleDb->fetchAll('IDCATEGORIE = 2');
+        $this->render('news/categorie',['articles'=>$article]);
+    }
+    public function computingAction(){
+        $articleDb= new ArticleDb();
+        $article = $articleDb->fetchAll('IDCATEGORIE = 3');
+        $this->render('news/categorie',['articles'=>$article]);
+    }
+    public function techAction(){
+        $articleDb= new ArticleDb();
+        $article = $articleDb->fetchAll('IDCATEGORIE = 4');
+        $this->render('news/categorie',['articles'=>$article]);
     }
 }

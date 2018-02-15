@@ -2,6 +2,14 @@
     $(document).on('ready', function () {
 
         "use strict";
+
+
+         /** Gestion des dates**/
+         $('time').each(function(t, e) {
+             var time = moment( $(e).attr('datetime') );
+             $(e).html('<span>' + time.from(moment()) + '</span>')
+         });
+
         /**Preload**/
         $('#page-loader').delay(600).fadeOut(400, function () {
             $('body').fadeIn();

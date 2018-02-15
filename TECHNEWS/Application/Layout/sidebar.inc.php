@@ -11,101 +11,30 @@
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab1">
             <ul class="list-news-popular">
-                <?php foreach ($sidebar as $side) { ?>
+                <?php
+                use Application\Model\Article\Article;
+                /**
+                 * @var $article Article
+                 */
+                foreach ($sidebar as $article) :
+                    ?>
                     <li>
                         <a href="#">
-                            <img alt="<?=$side->getTITREARTICLE() ?>" src="<?= PATH_PUBLIC ?>/images/product/<?= $side->getFULLIMAGEARTICLE(); ?>">
+                            <img alt="<?= $article->getTITREARTICLE() ?>" src="<?= $article->getFULLIMAGEARTICLE() ?>">
                         </a>
-                        <h3><a href="#"><?= $side->getTITREARTICLE(); ?></a></h3>
+                        <h3><a href="#"><?= $article->getTITREARTICLE() ?></a></h3>
                         <div class="meta-post">
                             <a href="#">
-                                <?= $side->getAUTEUROBJ()->getNOMCOMPLET()?>
+                                <?= $article->getAUTEUROBJ()->getNOMCOMPLETAUTEUR() ?>
                             </a>
                             <em></em>
                             <span>
-							<?= $side->getDATECREATIONARTICLE(); ?>
-						</span>
-                        </div>
-                    </li>
-                <?php } ?>
-                <!-- <li>
-                        <a href="#">
-                            <img alt="" src="images/product/8.jpg">
-                        </a>
-                        <h3><a href="#">Netflix Speeds Jumped 51% This Year</a></h3>
-                        <div class="meta-post">
-                            <a href="#">
-                                Ashley Ford
-
-                            </a>
-                            <em></em>
-                            <span>
-                                24 Aug  2016
+                                <?= $article->getDATECREATIONARTICLE() ?>
                             </span>
                         </div>
                     </li>
-                    <li>
-                        <a href="#">
-                            <img alt="" src="images/product/9.jpg">
-                        </a>
-                        <h3><a href="#">Uber wants to build planes to beat city traffic</a></h3>
-                        <div class="meta-post">
-                            <a href="#">
-                                Karla	Walters
-                            </a>
-                            <em></em>
-                            <span>
-                                04 Sep  2016
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img alt="" src="images/product/10.jpg">
-                        </a>
-                        <h3><a href="#">Apple reportedly prototyping their Amazon Echo competitor</a></h3>
-                        <div class="meta-post">
-                            <a href="#">
-                                Super User
-                            </a>
-                            <em></em>
-                            <span>
-                                01 Sep  2016
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img alt="" src="images/product/11.jpg">
-                        </a>
-                        <h3><a href="#">Watch out: That USB stick in your mailbox might be infected</a></h3>
-                        <div class="meta-post">
-                            <a href="#">
-                                Sue	Benson
-                            </a>
-                            <em></em>
-                            <span>
-                                27 Aug  2016
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img alt="" src="images/product/13.jpg">
-                        </a>
-                        <h3><a href="#">Tumblr brings Apple’s ‘Live Photos’ to the web</a></h3>
-                        <div class="meta-post">
-                            <a href="#">
-                                Super User
-                            </a>
-                            <em></em>
-                            <span>
-                                15 Sep 2016
-                            </span>
-                        </div>
-                    </li> -->
+                <?php endforeach; ?>
             </ul>
-
         </div>
     </div>
 
@@ -165,24 +94,23 @@
 			</span>
         </div>
         <div class="list-special">
-            <?php foreach ($special as $article){?>
+            <?php foreach ($special as $article) : ?>
                 <article class="news-two-large">
                     <a href="#">
-                        <img alt="<?= $article->getTITREARTICLE() ?>" src="<?= $article->getFULLIMAGEARTICLE()?>">
+                        <img alt="<?= $article->getTITREARTICLE() ?>" src="<?= $article->getFULLIMAGEARTICLE() ?>">
                     </a>
-                    <h3><a href="#"><?= $article->getTITREARTICLE()?></a></h3>
+                    <h3><a href="#"><?= $article->getTITREARTICLE() ?></a></h3>
                     <div class="meta-post">
                         <a href="#">
-                            <?=$article->getAUTEUROBJ()->getNOMCOMPLET(); ?>
+                            <?= $article->getAUTEUROBJ()->getNOMCOMPLETAUTEUR(); ?>
                         </a>
                         <em></em>
                         <span>
-						<?= $article->getDATECREATIONARTICLE() ?>
-					</span>
+                            <?= $article->getDATECREATIONARTICLE(); ?>
+                        </span>
                     </div>
-
                 </article>
-            <?php }?>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
