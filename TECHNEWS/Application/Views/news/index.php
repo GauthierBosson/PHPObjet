@@ -13,7 +13,7 @@
                 <article class="spotlight-item">
                     <div class="spotlight-img">
                         <img alt="<?= $article->getTITREARTICLE() ?>" src="<?= PATH_PUBLIC ?>/images/product/<?= $article->getFEATUREDIMAGEARTICLE() ?>" class="img-responsive" />
-                        <a href="#" class="cate-tag"><?= $article->getCATEGORIEOBJ()->getLIBELLECATEGORIE() ?></a>
+                        <a href="<?= $this->generateUrl('news', strtolower($article->getCATEGORIEOBJ()->getLIBELLECATEGORIE())) ?>" class="cate-tag"><?= $article->getCATEGORIEOBJ()->getLIBELLECATEGORIE() ?></a>
                     </div>
                     <div class="spotlight-item-caption">
                         <h2 class="font-heading">

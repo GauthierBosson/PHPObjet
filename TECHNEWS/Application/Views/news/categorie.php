@@ -37,7 +37,7 @@
             </div>
         <?php endforeach;?>
 
-    <?php else : ?>
+        <?php else : ?>
             <div class="alert alert-danger">
                 <strong>Aucune publication pour le moment</strong>
             </div>
